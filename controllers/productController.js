@@ -6,7 +6,7 @@ const Address = require("../model/addressModel");
 const Coupon = require("../model/coupenModel");
 const Order = require("../model/orderModel");
 const mongoose = require("mongoose");
-const Razorpay = require("razorpay");
+// const Razorpay = require("razorpay");
 const crypto = require("crypto");
 const { findOneAndUpdate } = require("../model/productModel");
 const { v4: uuidv4 } = require("uuid");
@@ -195,7 +195,7 @@ const disable = async (req, res) => {
         { $set: { disable: false } }
       );
       res.redirect("/admin/products");
-      res.json({success:true})
+      res.json({ success: true })
     } else {
       const enable = await Products.findByIdAndUpdate(
         { _id: Id },
@@ -203,7 +203,7 @@ const disable = async (req, res) => {
       );
 
       res.redirect("/admin/products");
-      res.json({success:true})
+      res.json({ success: true })
     }
   } catch (error) {
     console.log(error.message);
@@ -225,80 +225,80 @@ const loadWishlist = async (req, res) => {
   }
 };
 
-const AddToWishlist  =async(req,res) => { 
-  try{
-      const productId = req.body.productId
-      // console.log(req.session.user_id);
-      let exist =await User.findOne({id:req.session.user_id,'whishlist.product':productId})
-      // console.log(exist);
-      if(exist){
-          res.json({status:false})
-      }else{
-          const product =await Products.findOne({_id:req.body.productId})
-          const _id = req.session.user_id
-          const userData = await User.findOne({_id})
-          const result = await User.updateOne({_id},{$push:{whishlist:{product:product._id}}})
-          if(result){
-              res.json({status:true})
-          }else{
-              console.log('not addeed to wishlist');
-          }
-      }
-
-  }catch(error){
-      console.log(error.message);
-  }
-}
-const wishlistToCart = async(req,res)=>{
-  try{
-    console.log("inside wishlist to cart");
-      const productId = req.body.productId
-      console.log("produt Id",productId);
+const AddToWishlist = async (req, res) => {
+  try {
+    const productId = req.body.productId
+    // console.log(req.session.user_id);
+    let exist = await User.findOne({ id: req.session.user_id, 'whishlist.product': productId })
+    // console.log(exist);
+    if (exist) {
+      res.json({ status: false })
+    } else {
+      const product = await Products.findOne({ _id: req.body.productId })
       const _id = req.session.user_id
-      console.log("user  Id",_id);
-      const userId = mongoose.Types.ObjectId(_id)
-      console.log(userId);
-      let exist =await User.findOne({_id:req.session.user_id,'cart.productId':productId})
-      if(exist){
-          // const user = await User.findOne({_id:req.session.user_id})
-          // const index =await user.cart.findIndex(data=>data.productId._id == req.body.productId );
-          //     user.cart[index].qty +=1;
-          //     user.cart[index].productTotalPrice= user.cart[index].qty * user.cart[index].price
-          //     await user.save();
-          //     const remove = await User.updateOne({_id},{$pull:{whishlist:{product:productId}}})
-          console.log("exixst");
-            res.send(false)
-      }else{
-        console.log("ELSE");
-          const product =await Products.findOne({_id:req.body.productId})
-          console.log(product,"p");
-          const userData = await User.findOne({_id})
-          console.log(userData,"u");
-          const result = await User.findOneAndUpdate({_id:_id},{$push:{cart:{productId:product._id,qty:1,price:product.price,productTotalPrice:product.price}}})
-          console.log(result,"result");
-          if(result){
-              const remove = await User.findOneAndUpdate({_id:userId},{$pull:{whishlist:{product:productId}}})
-              console.log(remove,"r");
-              res.send(true)
-          }else{
-              console.log('not addeed to cart');
-          }
+      const userData = await User.findOne({ _id })
+      const result = await User.updateOne({ _id }, { $push: { whishlist: { product: product._id } } })
+      if (result) {
+        res.json({ status: true })
+      } else {
+        console.log('not addeed to wishlist');
       }
+    }
 
-  }catch(error){
-      console.log(error.message);
+  } catch (error) {
+    console.log(error.message);
   }
 }
-const deleteWishlistProduct = async(req,res) => { 
-  try{
-      const id = req.session.user_id
-      const deleteProId=req.body.productId
-      const deleteWishlist = await User.findByIdAndUpdate({_id:id},{$pull:{whishlist:{product:deleteProId}}})
-      if(deleteWishlist){
-          res.json({success:true})
+const wishlistToCart = async (req, res) => {
+  try {
+    console.log("inside wishlist to cart");
+    const productId = req.body.productId
+    console.log("produt Id", productId);
+    const _id = req.session.user_id
+    console.log("user  Id", _id);
+    const userId = mongoose.Types.ObjectId(_id)
+    console.log(userId);
+    let exist = await User.findOne({ _id: req.session.user_id, 'cart.productId': productId })
+    if (exist) {
+      // const user = await User.findOne({_id:req.session.user_id})
+      // const index =await user.cart.findIndex(data=>data.productId._id == req.body.productId );
+      //     user.cart[index].qty +=1;
+      //     user.cart[index].productTotalPrice= user.cart[index].qty * user.cart[index].price
+      //     await user.save();
+      //     const remove = await User.updateOne({_id},{$pull:{whishlist:{product:productId}}})
+      console.log("exixst");
+      res.send(false)
+    } else {
+      console.log("ELSE");
+      const product = await Products.findOne({ _id: req.body.productId })
+      console.log(product, "p");
+      const userData = await User.findOne({ _id })
+      console.log(userData, "u");
+      const result = await User.findOneAndUpdate({ _id: _id }, { $push: { cart: { productId: product._id, qty: 1, price: product.price, productTotalPrice: product.price } } })
+      console.log(result, "result");
+      if (result) {
+        const remove = await User.findOneAndUpdate({ _id: userId }, { $pull: { whishlist: { product: productId } } })
+        console.log(remove, "r");
+        res.send(true)
+      } else {
+        console.log('not addeed to cart');
       }
-  }catch(error){
-      console.log(error.message);
+    }
+
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+const deleteWishlistProduct = async (req, res) => {
+  try {
+    const id = req.session.user_id
+    const deleteProId = req.body.productId
+    const deleteWishlist = await User.findByIdAndUpdate({ _id: id }, { $pull: { whishlist: { product: deleteProId } } })
+    if (deleteWishlist) {
+      res.json({ success: true })
+    }
+  } catch (error) {
+    console.log(error.message);
   }
 }
 
@@ -326,7 +326,7 @@ const loadCart = async (req, res) => {
       res.render("cart", { userData });
       // console.log("product dattaaaaaaaaa");
     } else {
-     
+
       const userData = await User.findOne({ Id });
       res.render("cart", { userData });
     }
@@ -349,7 +349,7 @@ const addtoCart = async (req, res) => {
     if (existed) {
       res.json({ status: false });
     } else {
-      const product = await Products.findOne({ _id:proId });
+      const product = await Products.findOne({ _id: proId });
       console.log(product, "pro");
       const userId = req.session.user_id;
       const user = await User.findOne({ _id: userId });
@@ -611,10 +611,10 @@ const placeOrder = async (req, res) => {
           res.json({ walletBalance: true });
         }
       } else {
-        var instance = new Razorpay({
-          key_id: process.env.KEY_ID,
-          key_secret: process.env.KEY_SECRET,
-        });
+        // var instance = new Razorpay({
+        //   key_id: process.env.KEY_ID,
+        //   key_secret: process.env.KEY_SECRET,
+        // });
         let amount = total;
         instance.orders.create(
           {
