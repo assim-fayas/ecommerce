@@ -87,7 +87,7 @@ const sendRestPasswordMail = async (name, email, token) => {
             from: config.emailUser,
             to: email,
             subject: 'For Reset Password',
-            html: '<p> Hai ' + name + ', Please Click Here To <a href="http://localhost:3000/forget-password?token=' + token + '"> reset</a> Your Password</p>'
+            html: '<p> Hai ' + name + ', Please Click Here To <a href="https://joymart.store/forget-password?token=' + token + '"> reset</a> Your Password</p>'
         }
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
@@ -239,16 +239,16 @@ const verifyLogin = async (req, res) => {
 const loadHome = async (req, res) => {
 
     try {
-        const category=await Category.find({})
-        const product=await Product.find({disable:false}).sort({_id:-1}).limit(4)
+        const category = await Category.find({})
+        const product = await Product.find({ disable: false }).sort({ _id: -1 }).limit(4)
         const bannerCategery = await Banner.find({ $and: [{ block: true }, { type: "category" }] })
         // const bannerCategery = await Banner.find({type:category})
-        const bannerSliding = await Banner.find({$and:[{type:"sliding"},{block:true}]})
-    
+        const bannerSliding = await Banner.find({ $and: [{ type: "sliding" }, { block: true }] })
 
-        if(category){
-            console.log(bannerCategery,"banner");
-        res.render('home',{category,product,bannerSliding,bannerCategery});
+
+        if (category) {
+            console.log(bannerCategery, "banner");
+            res.render('home', { category, product, bannerSliding, bannerCategery });
         }
     }
     catch (error) {
@@ -469,7 +469,7 @@ const addAddress = async (req, res) => {
             console.log(req.body, "request body");
 
 
-            const AddressObj ={
+            const AddressObj = {
 
                 fullname: req.body.fullname,
                 mobileNumber: req.body.number,
@@ -514,66 +514,66 @@ const addAddress = async (req, res) => {
 }
 
 
-const editaddress=async(req,res)=>{
+const editaddress = async (req, res) => {
     try {
         console.log("inside edit address");
         const adrsSchemaId = req.params.id
         const adrsId = req.params.adrsId
-        const address=mongoose.Types.ObjectId(adrsSchemaId)
-        const addresses=mongoose.Types.ObjectId(adrsId)
+        const address = mongoose.Types.ObjectId(adrsSchemaId)
+        const addresses = mongoose.Types.ObjectId(adrsId)
         console.log(address);
         console.log(addresses);
-        const addressData = await Address.findOne({address})
+        const addressData = await Address.findOne({ address })
         console.log(addressData);
-        const addressIndex = await addressData.userAddresses.findIndex(data=> data.id == addresses)
-        
+        const addressIndex = await addressData.userAddresses.findIndex(data => data.id == addresses)
+
         console.log(addressIndex);
         const editAddress = addressData.userAddresses[addressIndex]
         console.log(editAddress);
-        res.render('edit-address',{editAddress,addressIndex})
+        res.render('edit-address', { editAddress, addressIndex })
     } catch (error) {
         console.log(error.message);
     }
 }
 
-const updateAddress = async(req,res) =>{
-    try{
+const updateAddress = async (req, res) => {
+    try {
         // const userAddresses = req.params.id
         console.log("update address");
         const addressIndex = req.params.addressIndex
         console.log(addressIndex);
         const editData = { ...req.body }
         const userId = req.session.user_id
-        const updateAdrs = await Address.findOne({userId})
-        updateAdrs.userAddresses[addressIndex]= {...editData}
+        const updateAdrs = await Address.findOne({ userId })
+        updateAdrs.userAddresses[addressIndex] = { ...editData }
         await updateAdrs.save()
         res.redirect('/address')
 
-    
-    }catch(error){
+
+    } catch (error) {
         console.log(error.message);
     }
 }
 
 
-const DeleteAddress = async(req,res)=>{
-    try{
+const DeleteAddress = async (req, res) => {
+    try {
         const adrsSchemaId = req.params.id
         const adrsId = req.params.adrsId
-        const addressId=mongoose.Types.ObjectId(adrsSchemaId)
-        const addresses=mongoose.Types.ObjectId(adrsId)
+        const addressId = mongoose.Types.ObjectId(adrsSchemaId)
+        const addresses = mongoose.Types.ObjectId(adrsId)
         console.log(addressId);
         console.log(addresses);
-        const addressData = await Address.findOne({addressId})
+        const addressData = await Address.findOne({ addressId })
         console.log(addressData);
-        const addressIndex = await addressData.userAddresses.findIndex(data=> data.id == addresses)
+        const addressIndex = await addressData.userAddresses.findIndex(data => data.id == addresses)
         console.log(addressIndex);
-        addressData.userAddresses.splice(addressIndex,1)
+        addressData.userAddresses.splice(addressIndex, 1)
         await addressData.save()
         res.redirect('/address')
-        
 
-    }catch(error){
+
+    } catch (error) {
         console.log(error.message);
     }
 }
