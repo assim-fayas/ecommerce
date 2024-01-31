@@ -1,0 +1,337 @@
+<%- include('../layouts/adminHeader.ejs') %>
+
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Jhon Doe</h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="/admin/home" class="nav-item nav-link "><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <div class="nav-item dropdown">
+                        <a href="/admin/users" class="nav-link"><i class="fa fa-laptop me-2"></i>User's List</a>
+
+                    </div>
+                    <a href="/admin/category" class="nav-item nav-link "><i class="fa fa-keyboard me-2"></i>Catagory</a>
+                    <a href="/admin/products" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Products</a>
+                    <a href="/admin/brand" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Brand</a>
+                    <a href="/admin/coupen" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Coupen</a>
+                    <a href="/admin/banner" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Banner</a>
+                    <a href="/admin/orders" class="nav-item nav-link active"><i class="fa fa-table me-2"></i>Order</a>
+                    <a href="/admin/salesReport" class="nav-item nav-link  "><i class="fa fa-table me-2"></i>Sales
+                        Report</a>
+
+
+                </div>
+        </div>
+        </nav>
+    </div>
+    <!-- Sidebar End -->
+
+
+    <!-- Content Start -->
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+            <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+            </a>
+            <a href="#" class="sidebar-toggler flex-shrink-0">
+                <i class="fa fa-bars"></i>
+            </a>
+            <form class="d-none d-md-flex ms-4">
+                <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+            </form>
+            <div class="navbar-nav align-items-center ms-auto">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="fa fa-envelope me-lg-2"></i>
+                        <span class="d-none d-lg-inline-flex">Message</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle" src="img/user.jpg" alt=""
+                                    style="width: 40px; height: 40px;">
+                                <div class="ms-2">
+                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                    <small>15 minutes ago</small>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle" src="img/user.jpg" alt=""
+                                    style="width: 40px; height: 40px;">
+                                <div class="ms-2">
+                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                    <small>15 minutes ago</small>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle" src="img/user.jpg" alt=""
+                                    style="width: 40px; height: 40px;">
+                                <div class="ms-2">
+                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                    <small>15 minutes ago</small>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item text-center">See all message</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="fa fa-bell me-lg-2"></i>
+                        <span class="d-none d-lg-inline-flex">Notificatin</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Profile updated</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">New user added</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Password changed</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item text-center">See all notifications</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
+                            style="width: 40px; height: 40px;">
+                        <span class="d-none d-lg-inline-flex">John Doe</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">My Profile</a>
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="/admin/logout" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+
+
+        <!-- 
+        <div class="container mx-auto">
+            <a href="/admin/addCategory"> <button type="submit" class="btn btn-primary float-right mt-5 ">Add category
+                </button> </a>
+        </div> -->
+        <!-- start of the button -->
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown container ">
+            <!-- <div class="btn-group container mx-auto mt-5 mx-3 " role="group">
+                <button type="button" class="btn btn-primary dropdown-toggle  " data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Add
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/admin/addCategory">Add Category</a></li>
+                    <li><a class="dropdown-item" href="/admin/addSubCategory">Sub Category</a></li>
+                </ul>
+            </div> -->
+        </div>
+
+        <!-- end of the button -->
+        <div class="container-fluid mt-5">
+            <div class="row  justify-content-center">
+
+                <div class="col-md-8 mt-0">
+
+
+                    <div class="container ">
+
+                        <table class="table table-dark table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Order Id</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Payment Method</th>
+                                    <th scope="col">Order Status</th>
+                                    <th scope="col">Total Amount</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">View</th>
+
+                                </tr>
+                            </thead>
+
+                            <% if(orderList.length<=0){%>
+
+                                <p>
+                                <h1 style="color: brown;">You Haven't Orderd Yet</h1>
+                                </p>
+
+                                <% } else{%>
+                                    <%for(let i=0;i< orderList.length;i++){%>
+
+                                        <tr>
+
+
+                                            <td>
+                                                <%= i+1 %>
+                                            </td>
+                                            <td>
+                                                <%= orderList[i].orderid %>
+                                            </td>
+
+
+                                            <td>
+                                                <%=
+                                                    orderList[i].date.toLocaleString({day:'2-digit',month:'2-digit',year:'2-digit'})%>
+                                            </td>
+                                            <td>
+
+                                                <%=orderList[i].address.fullName%> <br>
+                                                    <%=orderList[i].address.mobileNumber%><br>
+                                                        <%=orderList[i].address.pincode%><br>
+                                                            <%=orderList[i].address.houseAddress%>
+                                                                <%=orderList[i].address.streetAddress%><br>
+                                                                    <%=orderList[i].address. landMark%>
+                                                                        <%=orderList[i].address.cityName%>
+                                                                            <br>
+
+                                            </td>
+
+
+                                            <td>
+                                                <%=orderList[i].paymentMethod %>
+                                            </td>
+                                            <td>
+
+                                                <%= orderList[i].orderStatus %>
+                                            </td>
+
+                                            <td>
+                                                <%= orderList[i].totalAmount %>
+                                            </td>
+                                            <td>
+
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <%= orderList[i].orderStatus %>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <% if (orderList[i].orderStatus==="pending" ) { %>
+                                                            <li><a class="dropdown-item"
+                                                                    href="/admin/order-status-placed?id=<%=orderList[i]._id%>">Placed</a>
+                                                            </li>
+                                                            <li><a class="dropdown-item"
+                                                                    href="/admin/order-status-shipped?id=<%=orderList[i]._id%>">Shipped</a>
+                                                            </li>
+                                                            <li><a class="dropdown-item"
+                                                                    href="/admin/order-status-delivered?id=<%=orderList[i]._id%>">Delivered</a>
+                                                            </li>
+                                                            <% } else if (orderList[i].orderStatus==="placed" ) { %>
+                                                                <li><a class="dropdown-item"
+                                                                        href="/admin/order-status-shipped?id=<%=orderList[i]._id%>">Shipped</a>
+                                                                </li>
+                                                                <li><a class="dropdown-item"
+                                                                        href="/admin/order-status-delivered?id=<%=orderList[i]._id%>">Delivered</a>
+                                                                </li>
+                                                                <% } else if (orderList[i].orderStatus==="Shipped" ) {
+                                                                    %>
+                                                                    <li><a class="dropdown-item"
+                                                                            href="/admin/order-status-delivered?id=<%=orderList[i]._id%>">Delivered</a>
+                                                                    </li>
+                                                                    <% } else if (orderList[i].orderStatus==="Delivered"
+                                                                        ) { %>
+                                                                        <li><span
+                                                                                class="dropdown-item disabled">Delivered</span>
+                                                                        </li>
+                                                                        <% } else if
+                                                                            (orderList[i].orderStatus==="return requested"
+                                                                            ) { %>
+                                                                            <li><a class="dropdown-item"
+                                                                                    href="/admin/order-status-acceptReturn?id=<%=orderList[i]._id%>">Accept
+                                                                                    Return</a></li>
+                                                                            <li><a class="dropdown-item"
+                                                                                    href="/admin/order-status-rejectReturn?id=<%=orderList[i]._id%>">Reject
+                                                                                    Return</a></li>
+                                                                            <% } else if
+                                                                                (orderList[i].orderStatus==="Accept  Return"
+                                                                                ) { %>
+                                                                                <li><span
+                                                                                        class="dropdown-item disabled">Accept
+                                                                                        Return</span>
+                                                                                </li>
+
+                                                                                <% } else if
+                                                                                    (orderList[i].orderStatus==="Reject Return"
+                                                                                    ) { %>
+
+                                                                                    <li><span
+                                                                                            class="dropdown-item disabled">Reject
+                                                                                            Return</span>
+                                                                                    </li>
+
+
+                                                                                    <% } %>
+                                                    </ul>
+                                                </div>
+
+
+                                            </td>
+
+                                            <td>
+                                                <a href="/admin/orderPreview?orderid=<%=orderList[i].orderid%>"> <i
+                                                        class="fa-sharp fa-regular fa-eye fa-spin-pulse"></i></a>
+                                            </td>
+
+
+                                        </tr>
+                                        <%} }%>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        </div>
+
+        <%- include('../layouts/adminFooter.ejs') %>

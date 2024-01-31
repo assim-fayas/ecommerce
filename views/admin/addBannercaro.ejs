@@ -1,0 +1,270 @@
+<%- include('../layouts/adminHeader.ejs') %>
+
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Jhon Doe</h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="/admin/home" class="nav-item nav-link "><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <div class="nav-item dropdown">
+                        <a href="/admin/users" class="nav-link "><i class="fa fa-laptop me-2"></i>User's List</a>
+
+                    </div>
+                    <a href="/admin/category" class="nav-item nav-link "><i class="fa fa-keyboard me-2"></i>Catagory</a>
+                    <a href="/admin/products" class="nav-item nav-link "><i class="fa fa-th me-2"></i>Products</a>
+                    <a href="/admin/brand" class="nav-item nav-link "><i class="fa fa-chart-bar me-2"></i>Brand</a>
+                    <a href="/admin/coupen" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Coupen</a>
+                    <a href="/admin/banner" class="nav-item nav-link active"><i class="fa fa-table me-2"></i>Brand</a>
+
+
+                </div>
+        </div>
+        </nav>
+    </div>
+    <!-- Sidebar End -->
+
+
+    <!-- Content Start -->
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+            <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+            </a>
+            <a href="#" class="sidebar-toggler flex-shrink-0">
+                <i class="fa fa-bars"></i>
+            </a>
+            <form class="d-none d-md-flex ms-4">
+                <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+            </form>
+            <div class="navbar-nav align-items-center ms-auto">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="fa fa-envelope me-lg-2"></i>
+                        <span class="d-none d-lg-inline-flex">Message</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle" src="img/user.jpg" alt=""
+                                    style="width: 40px; height: 40px;">
+                                <div class="ms-2">
+                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                    <small>15 minutes ago</small>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle" src="img/user.jpg" alt=""
+                                    style="width: 40px; height: 40px;">
+                                <div class="ms-2">
+                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                    <small>15 minutes ago</small>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle" src="img/user.jpg" alt=""
+                                    style="width: 40px; height: 40px;">
+                                <div class="ms-2">
+                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                    <small>15 minutes ago</small>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item text-center">See all message</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="fa fa-bell me-lg-2"></i>
+                        <span class="d-none d-lg-inline-flex">Notificatin</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Profile updated</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">New user added</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                            <h6 class="fw-normal mb-0">Password changed</h6>
+                            <small>15 minutes ago</small>
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item text-center">See all notifications</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
+                            style="width: 40px; height: 40px;">
+                        <span class="d-none d-lg-inline-flex">John Doe</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">My Profile</a>
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="/admin/logout" class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+
+        <div class="container mt-5 col-md-6  ">
+
+            <div class="col-md-10  ">
+                <form action="/admin/addbannerCaro" method="post" enctype="multipart/form-data"
+                    style="background-color: #585856; color: #ffffde; border: 1px solid rgb(1, 1, 1); padding: 20px;"
+                    class="text-left  form-sm" id="bannerForm" onsubmit="return validateFormBanner()">
+                    <div class="form-group mb-4">
+                        <label for="thumbnail">Image</label>
+                        <div class="input-group">
+                            <div class="custom-file col-">
+                                <input type="file" multiple class="custom-file-input bg-dark" id="thumbnail"
+                                    name="image" accept="image/jpg,image/jpeg,image/png,image/webpeg" />
+                                <label class="custom-file-label" for="thumbnail">choose file</label>
+                            </div>
+                        </div>
+                        <span id="thumbnailError" style="color: red; display: none;">Please select an image file.</span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="bannertype">Banner Type</label>
+                        <select class="form-control bg-dark col-4" id="bannertype" name="bannertype">
+                            <option value="">Select banner type</option>
+                            <option value="sliding">Sliding Banner</option>
+                            <option value="category">Category Banner</option>
+                        </select>
+                        <span id="bannerTypeError" style="color: red; display: none;">Please select a banner
+                            type.</span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="name">Description</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-dark col-4" id="description" name="description"
+                                placeholder="Enter Description">
+                        </div>
+                        <span id="descriptionError" style="color: red; display: none;">Please provide a
+                            description.</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+
+        </div>
+
+
+        </form>
+
+        <script>
+            function validateFormBanner() {
+                // Get form inputs
+                const thumbnail = document.getElementById('thumbnail');
+                const bannerType = document.getElementById('bannertype');
+                const description = document.getElementById('description');
+
+                // Get error message elements
+                const thumbnailError = document.getElementById('thumbnailError');
+                const bannerTypeError = document.getElementById('bannerTypeError');
+                const descriptionError = document.getElementById('descriptionError');
+
+                // Set flag variable to track if any errors were found
+                let errorFound = false;
+
+                // Check if thumbnail is selected
+                if (thumbnail.files.length === 0) {
+                    thumbnailError.style.display = 'block';
+                    errorFound = true;
+                } else {
+                    thumbnailError.style.display = 'none';
+                }
+
+                // Check if banner type is selected
+                if (bannerType.value === '') {
+                    bannerTypeError.style.display = 'block';
+                    errorFound = true;
+                } else {
+                    bannerTypeError.style.display = 'none';
+                }
+
+                // Check if description is provided
+                if (description.value === '') {
+                    descriptionError.style.display = 'block';
+                    errorFound = true;
+                } else {
+                    descriptionError.style.display = 'none';
+                }
+
+                // Return false if any errors were found
+                if (errorFound) {
+                    return false;
+                }
+
+                // Submit form if no errors were found
+                return true;
+            }
+
+            // Get form element
+            const bannerForm = document.getElementById('bannerForm');
+
+            // Attach event listener to form submit event
+            bannerForm.addEventListener('submit', function (event) {
+                // Prevent default form submission
+                event.preventDefault();
+
+                // Validate form
+                const formValid = validateForm();
+
+                // Submit form if valid
+                if (formValid) {
+                    this.submit();
+                }
+            });
+        </script>
+
+        <!-- Add error message elements to the form -->
+
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <%- include('../layouts/adminFooter.ejs') %>

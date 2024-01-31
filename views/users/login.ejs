@@ -1,0 +1,62 @@
+<%- include('../layouts/logheader.ejs') %>
+
+
+
+    <body>
+        <div class="container">
+            <div class="column1">
+                <form action="/login" method="post" id="form" class="form">
+                    <h2> Login</h2>
+
+                    <% if(typeof message !=='undefined' ){ %>
+
+                        <p style="color: rgb(79, 128, 0)">
+                            <%= message %>
+                        </p>
+
+                        <% } %>
+
+                            <div class="form-control">
+                                <label for='email'>Email
+                                    <input type="text" id="email" placeholder="Enter email" name="email">
+                                    <small>Error message</small></label>
+                            </div>
+
+                            <div class="form-control">
+                                <label for='password'>Password
+                                    <input type="password" id="password" placeholder="Enter password" name="password">
+                                    <small>Error message</small></label>
+                            </div>
+
+                            <button type="submit">Submit</button><br>
+                            <br>
+                            <a href="/forgot">Forgot Password</a> &NonBreakingSpace; &NonBreakingSpace;
+                            <a href="/loginOtp">Login With Otp</a> <br><br>
+
+
+                            Are You New User ? Please <a href="/register">Register</a>
+
+                </form>
+
+
+
+
+
+
+
+
+            </div>
+            <div class="column2">
+
+                <img src="https://i.ibb.co/k5NNz4F/pablo-sign-up.png" alt="pablo-sign-up" border="0"
+                    class='signup-image'>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <%- include('../layouts/logfoot.ejs') %>
