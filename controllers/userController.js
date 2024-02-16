@@ -37,8 +37,8 @@ const sendVerifyMail = async (name, email, user_id) => {
             secure: false,
             requireTLS: true,
             auth: {
-                user: config.emailUser,
-                pass: config.emailPassword
+                user: 'asim1fayas@gmail.com',
+                pass: 'hcsd xyap vpzz tlcm'
             }
 
         });
