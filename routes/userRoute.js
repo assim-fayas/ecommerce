@@ -1,19 +1,21 @@
 const express = require("express");
 const user_route = express();
 const session = require("express-session");
-const config = require("../config/config");
 const nocache = require('nocache')
+const env = require('dotenv')
+env.config()
 
 user_route.use(session({
-    secret: config.sessionSecret,
+    secret: process.env.SESSION_SECERET_,
     saveUninitialized: true,
     cookie: { maxAge: 6000000 },
     resave: false
 }))
+
 user_route.use(nocache())
 
 const auth = require("../middleware/auth");
-
+const rateLimiting = require('../middleware/ratelimiting')
 user_route.set('views', './views/users');
 user_route.set('view engine', 'ejs');
 
@@ -28,11 +30,11 @@ const orderController = require("../controllers/orderController");
 
 
 user_route.get('/register', auth.isLogout, userController.loadRegister);
-user_route.post('/register', userController.insertUser);
+user_route.post('/register', rateLimiting.limiter, userController.insertUser);
 user_route.get('/', auth.isLogout, userController.loginLoad)
 user_route.get('/verify', userController.verifyMail);
 user_route.get('/login', auth.isLogout, userController.loginLoad);
-user_route.post('/login', userController.verifyLogin);
+user_route.post('/login', rateLimiting.limiter, userController.verifyLogin);
 user_route.get('/home', auth.isLogin, userController.loadHome);
 user_route.get('/logout', auth.isLogin, userController.userLogout);
 user_route.get('/forgot', auth.isLogout, userController.forgetLoad);
@@ -64,7 +66,7 @@ user_route.get('/singleProduct', auth.isLogin, productController.singleProduct)
 user_route.get('/wishlist', auth.isLogin, productController.loadWishlist)
 user_route.post('/addtowhishlist', auth.isLogin, productController.AddToWishlist)
 user_route.post('/deletewhishlist', auth.isLogin, productController.deleteWishlistProduct)
-user_route.post('/wishlistToCart',auth.isLogin,productController.wishlistToCart)
+user_route.post('/wishlistToCart', auth.isLogin, productController.wishlistToCart)
 
 // cart
 user_route.get('/cart', auth.isLogin, productController.loadCart)
@@ -89,7 +91,7 @@ user_route.get('/cancelRequest', auth.isLogin, orderController.cancelRequest)
 user_route.get('/cancelreturnRequested', auth.isLogin, orderController.cancelreturnRequested)
 
 // shop by category
-user_route.get('/shopcategory',auth.isLogin,productController.shopCategory)
+user_route.get('/shopcategory', auth.isLogin, productController.shopCategory)
 
 
 

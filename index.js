@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const path = require('path')
-const env = require('dotenv').config();
+require("dotenv").config()
 const multer = require('multer')
-
-mongoose.connect("mongodb+srv://contactasim000:a1s2i1m2@cluster0.vdvoplq.mongodb.net/Ecommerce");
+const db_connect = require('./config/dbconnection')
+db_connect.dbConnect()
 
 const express = require("express");
 
@@ -23,13 +23,11 @@ const adminRoute = require("./routes/adminRoute");
 const bodyParser = require("body-parser");
 app.use('/admin', adminRoute)
 
-const { sessionSecret } = require('./config/config')
 
 
 
 
-
-app.use((req,res)=>{
+app.use((req, res) => {
     res.status(404).render("404")
 })
 

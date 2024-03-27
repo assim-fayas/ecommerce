@@ -3,10 +3,9 @@ const express = require("express")
 const admin_route = express();
 
 const session = require("express-session");
-const config = require("../config/config");
 const nocache = require('nocache')
 admin_route.use(session({
-    secret: config.sessionSecret,
+    secret: process.env.SESSION_SECERET_,
     saveUninitialized: true,
     cookie: { maxAge: 6000000 },
     resave: false
@@ -75,8 +74,10 @@ const productController = require("../controllers/productController")
 const brandController = require("../controllers/brandController")
 const couponController = require("../controllers/couponController")
 const bannerController = require("../controllers/bannerController")
-const orderController=require("../controllers/orderController")
+const orderController = require("../controllers/orderController")
 const auth = require("../middleware/adminAuth")
+const rateLimiting = require('../middleware/ratelimiting')
+
 
 // admin adminController
 admin_route.get('/', auth.isLogout, adminController.loadadminLogin)
@@ -130,17 +131,17 @@ admin_route.get('/editBanner', auth.isLogin, bannerController.editBanner)
 admin_route.delete('/blockBanner', auth.isLogin, bannerController.blockbanner)
 
 //orders
-admin_route.get('/orders',auth.isLogin,orderController.loadOrder)
-admin_route.get('/order-status-placed',auth.isLogin,orderController.orderPlaced)
-admin_route.get('/order-status-shipped',auth.isLogin,orderController.orderShipped)
-admin_route.get('/order-status-delivered',auth.isLogin,orderController.orderDelivered)
-admin_route.get('/order-status-rejectRerturn',auth.isLogin,orderController.rejectReturn)
-admin_route.get('/order-status-acceptReturn',auth.isLogin,orderController.acceptReturn)
-admin_route.get('/orderPreview',auth.isLogin,orderController.orderView)
+admin_route.get('/orders', auth.isLogin, orderController.loadOrder)
+admin_route.get('/order-status-placed', auth.isLogin, orderController.orderPlaced)
+admin_route.get('/order-status-shipped', auth.isLogin, orderController.orderShipped)
+admin_route.get('/order-status-delivered', auth.isLogin, orderController.orderDelivered)
+admin_route.get('/order-status-rejectRerturn', auth.isLogin, orderController.rejectReturn)
+admin_route.get('/order-status-acceptReturn', auth.isLogin, orderController.acceptReturn)
+admin_route.get('/orderPreview', auth.isLogin, orderController.orderView)
 
 //sales Report
-admin_route.get('/salesReport',auth.isLogin,orderController.salesReport)
-admin_route.post('/salesReport',orderController.ViewSalesReport)
+admin_route.get('/salesReport', auth.isLogin, orderController.salesReport)
+admin_route.post('/salesReport', orderController.ViewSalesReport)
 
 admin_route.get('*', (req, res) => {
     res.redirect('/admin')

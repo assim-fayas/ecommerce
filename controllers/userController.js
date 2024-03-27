@@ -7,9 +7,9 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose')
 const nodemailer = require("nodemailer");
 const randomstring = require("randomstring");
-const config = require("../config/config");
 const { findById } = require('../model/addressModel');
 const { find } = require('../model/userModel');
+require('dotenv').config()
 
 const { TWILIO_SERVICE_SID, TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN } = process.env
 const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, {
@@ -37,14 +37,14 @@ const sendVerifyMail = async (name, email, user_id) => {
             secure: false,
             requireTLS: true,
             auth: {
-                user: 'asim1fayas@gmail.com',
-                pass: 'twmm glcl hcon vndd'
+                user: process.env.emailUser,
+                pass: process.env.emailPassword
             }
 
         });
         const mailOptions = {
 
-            from: config.emailUser,
+            from: process.env.emailUser,
             to: email,
             subject: 'for verification mail',
             html: '<p> Hai ' + name + ', Please Click Here To <a href="https://joymart.store/verify?id=' + user_id + '"> To Verify</a> Your Email</p>'
@@ -77,14 +77,14 @@ const sendRestPasswordMail = async (name, email, token) => {
             secure: false,
             requireTLS: true,
             auth: {
-                user: config.emailUser,
-                pass: config.emailPassword
+                user: process.env.emailUser,
+                pass: process.env.emailPassword
             }
 
         });
         const mailOptions = {
 
-            from: config.emailUser,
+            from: process.env.emailUser,
             to: email,
             subject: 'For Reset Password',
             html: '<p> Hai ' + name + ', Please Click Here To <a href="https://joymart.store/forget-password?token=' + token + '"> reset</a> Your Password</p>'
