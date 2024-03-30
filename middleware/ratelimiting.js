@@ -1,8 +1,10 @@
 const ratelimit = require('express-rate-limit')
+
+//  one registration oer day
 const limiter = ratelimit({
-    max: 3,
-    windowMs: 60 * 60 * 1000,
-    message: 'we have received too many request from this Ip,Please try after some times'
+    max: 1,
+    windowMs: 24 * 60 * 60 * 1000,
+    message: 'we have received too many request ,Please try after some times'
 })
 
 
