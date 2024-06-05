@@ -10,7 +10,10 @@ const express = require("express");
 const app = express();
 
 const { dirname } = require('path')
+const job=require("./config/job")
 
+//schedules cron job
+job.start()
 
 //for user routes
 app.use(express.static(path.join(__dirname, "assets")));
