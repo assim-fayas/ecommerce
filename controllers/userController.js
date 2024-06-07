@@ -47,7 +47,7 @@ const sendVerifyMail = async (name, email, user_id) => {
             from: process.env.emailUser,
             to: email,
             subject: 'for verification mail',
-            html: '<p> Hai ' + name + ', Please Click Here To <a href="https://joymart.store/verify?id=' + user_id + '"> To Verify</a> Your Email</p>'
+            html: '<p> Hai ' + name + ', Please Click Here To <a href="https://ecommerce-aoor.onrender.com/verify?id=' + user_id + '"> To Verify</a> Your Email</p>'
         }
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
@@ -87,7 +87,7 @@ const sendRestPasswordMail = async (name, email, token) => {
             from: process.env.emailUser,
             to: email,
             subject: 'For Reset Password',
-            html: '<p> Hai ' + name + ', Please Click Here To <a href="https://joymart.store/forget-password?token=' + token + '"> reset</a> Your Password</p>'
+            html: '<p> Hai ' + name + ', Please Click Here To <a href="https://ecommerce-aoor.onrender.com/forget-password?token=' + token + '"> reset</a> Your Password</p>'
         }
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
