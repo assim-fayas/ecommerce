@@ -30,11 +30,11 @@ const orderController = require("../controllers/orderController");
 
 
 user_route.get('/register', auth.isLogout, userController.loadRegister);
-user_route.post('/register', rateLimiting.limiter, userController.insertUser);
+user_route.post('/register', userController.insertUser);
 user_route.get('/', auth.isLogout, userController.loginLoad)
 user_route.get('/verify', userController.verifyMail);
 user_route.get('/login', auth.isLogout, userController.loginLoad);
-user_route.post('/login', rateLimiting.limiter, userController.verifyLogin);
+user_route.post('/login', userController.verifyLogin);
 user_route.get('/home', auth.isLogin, userController.loadHome);
 user_route.get('/logout', auth.isLogin, userController.userLogout);
 user_route.get('/forgot', auth.isLogout, userController.forgetLoad);
